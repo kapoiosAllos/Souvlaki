@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
 import Aux from '../../hoc/aux';
+import Souvlaki from '../../components/Souvlaki/Souvlaki';
 
 class SouvlakiBuilder extends Component {
   render () {
     return (
       <Aux>
-        <div>Souvlaki</div>
+        <Souvlaki />
         <div>Build Controls</div>
       </Aux>
     );
