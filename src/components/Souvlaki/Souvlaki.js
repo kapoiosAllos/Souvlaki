@@ -5,11 +5,16 @@ import classes from './Souvlaki.css'
 import SouvlakiIngredient from './SouvlakiIngredient/SouvlakiIngredient';
 
 const souvlaki = (props) => {
+  const transformedIngredients = Object.keys(props.ingredients)
+    .map(ingrKey => {
+      return [...Array(props.ingredients[ingrKey])].map((_, index) => {
+        return <SouvlakiIngredient key = {ingrKey + 1} type = {ingrKey} />
+      });
+    });
   return (
     <div className = {classes.Souvlaki}>
       <SouvlakiIngredient type="bread-top" />
-      <SouvlakiIngredient type="cheese" />
-      <SouvlakiIngredient type="meat" />
+        {transformedIngredients}
       <SouvlakiIngredient type="bread-bottom" />
     </div>
   );
