@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Aux from '../../hoc/aux';
 import Souvlaki from '../../components/Souvlaki/Souvlaki';
+import BuildControls from '../../components/Souvlaki/BuildControls/BuildControls'
 
 class SouvlakiBuilder extends Component {
   state = {
@@ -16,7 +17,7 @@ class SouvlakiBuilder extends Component {
     return (
       <Aux>
         <Souvlaki ingredients = {this.state.ingredients} />
-        <div>Build Controls</div>
+        <BuildControls/>
       </Aux>
     );
   }
