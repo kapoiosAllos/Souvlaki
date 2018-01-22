@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import Aux from '../../hoc/aux';
+import Aux from '../../hoc/Aux';
 import Souvlaki from '../../components/Souvlaki/Souvlaki';
-import BuildControls from '../../components/Souvlaki/BuildControls/BuildControls'
-
+import BuildControls from '../../components/Souvlaki/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Souvlaki/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -76,6 +77,9 @@ class SouvlakiBuilder extends Component {
     };
     return (
       <Aux>
+        <Modal>
+          <OrderSummary ingredients={this.state.ingredients}/>
+        </Modal>
         <Souvlaki ingredients = {this.state.ingredients} />
         <BuildControls
           ingredientAdded = {this.addIngredientHandler}
