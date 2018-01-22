@@ -73,6 +73,10 @@ class SouvlakiBuilder extends Component {
     this.setState({purchasing: true})
   }
 
+  purchaseCancelHandler = () => {
+    this.setState({purchasing: false})
+  }
+
   render () {
     const disabledInfo = {
       ...this.state.ingredients
@@ -82,7 +86,7 @@ class SouvlakiBuilder extends Component {
     };
     return (
       <Aux>
-        <Modal show={this.state.purchasing}>
+        <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
           <OrderSummary ingredients={this.state.ingredients}/>
         </Modal>
         <Souvlaki ingredients = {this.state.ingredients} />
