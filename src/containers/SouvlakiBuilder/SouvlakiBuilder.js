@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux/Aux';
 import Souvlaki from '../../components/Souvlaki/Souvlaki';
 import BuildControls from '../../components/Souvlaki/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
