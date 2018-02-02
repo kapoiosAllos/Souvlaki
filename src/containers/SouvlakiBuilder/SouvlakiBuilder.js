@@ -6,6 +6,7 @@ import BuildControls from '../../components/Souvlaki/BuildControls/BuildControls
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Souvlaki/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axiosOrders';
 
 const INGREDIENT_PRICES = {
@@ -141,4 +142,4 @@ class SouvlakiBuilder extends Component {
   }
 }
 
-export default SouvlakiBuilder;
+export default withErrorHandler(SouvlakiBuilder, axios);
