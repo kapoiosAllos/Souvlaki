@@ -18,16 +18,22 @@ const INGREDIENT_PRICES = {
 
 class SouvlakiBuilder extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0
-    },
+    ingredients: null,
     totalPrice: 4,
     purchaseable: false,
     purchasing: false,
-    loading: false
+    loading: false,
+    error: true
+  }
+
+  componentDidMount () {
+    axios.get('https://souvlaki-builder.firebaseio.com/ingredients.json')
+    .then(response => {
+      this.setState({ingredients: response.data})
+    })
+    .catch(error => {
+      this.setState({error: true})
+    });
   }
 
   updatePurchaseState (ingredients){
@@ -114,29 +120,39 @@ class SouvlakiBuilder extends Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0
     };
-    let orderSummary = <OrderSummary
+    let orderSummary = null;
+    let souvlaki = this.state.error ? <p> Ingredients cant be displayed </p> : <Spinner/>;
+
+    if (this.state.ingredients) {
+      souvlaki = (
+        <Aux>
+            <Souvlaki ingredients = {this.state.ingredients} />
+          <BuildControls
+            ingredientAdded = {this.addIngredientHandler}
+            ingredientRemoved = {this.removeIngredientHandler}
+            disabled = {disabledInfo}
+            purchaseable = {this.state.purchaseable}
+            ordered = {this.purchaseHandler}
+            price = {this.state.totalPrice}
+          />
+        </Aux>
+      );
+      orderSummary = <OrderSummary
       ingredients={this.state.ingredients}
       price={this.state.totalPrice}
       purchaseCancelled={this.purchaseCancelHandler}
       purchaceContinued={this.purchaseContinueHandler}/>;
-
+    }
     if (this.state.loading) {
       orderSummary = <Spinner/>;
     }
+
     return (
       <Aux>
         <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
           {orderSummary}
         </Modal>
-        <Souvlaki ingredients = {this.state.ingredients} />
-        <BuildControls
-          ingredientAdded = {this.addIngredientHandler}
-          ingredientRemoved = {this.removeIngredientHandler}
-          disabled = {disabledInfo}
-          purchaseable = {this.state.purchaseable}
-          ordered = {this.purchaseHandler}
-          price = {this.state.totalPrice}
-          />
+          {souvlaki}
       </Aux>
     );
   }
