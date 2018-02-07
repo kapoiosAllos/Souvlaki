@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Layout from './hoc/Layout/Layout'
 import SouvlakiBuilder from './containers/SouvlakiBuilder/SouvlakiBuilder';
+import Checkout from './containers/Checkout/Checkout';
 
 class App extends Component {
   // state = {
@@ -18,7 +19,8 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          {this.state.show ? <SouvlakiBuilder/> : null}
+          <SouvlakiBuilder/>
+          <Checkout/>
         </Layout>
       </div>
     );
