@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 
 import classes from './Souvlaki.css'
 import SouvlakiIngredient from './SouvlakiIngredient/SouvlakiIngredient';
@@ -26,4 +26,4 @@ const souvlaki = (props) => {
   );
 }
 
-export default souvlaki;
+export default withRouter(souvlaki);
