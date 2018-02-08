@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
 import Layout from './hoc/Layout/Layout'
 import SouvlakiBuilder from './containers/SouvlakiBuilder/SouvlakiBuilder';
@@ -19,8 +20,8 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <SouvlakiBuilder/>
-          <Checkout/>
+          <Route path="/" exact component={SouvlakiBuilder} />
+          <Route path="/checkout" component={Checkout} />
         </Layout>
       </div>
     );
