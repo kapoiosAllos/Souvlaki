@@ -85,6 +85,7 @@ class ContactData extends Component {
     loading: false
   }
 
+
   orderHandler = (event) => {
     event.preventDefault();
     this.setState({loading: true})
@@ -118,7 +119,7 @@ class ContactData extends Component {
       }
 
       if (rules.maxLength) {
-        isValid = value.length <= rules.maxLength && isValid;  
+        isValid = value.length <= rules.maxLength && isValid;
       }
 
       return isValid;
@@ -135,12 +136,14 @@ class ContactData extends Component {
       };
 
       updatedFormElement.value = event.target.value;
-      updatedOrderForm.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+      updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
       updatedOrderForm[inputIdentifier] = updatedFormElement;
       this.setState({orderForm: updatedOrderForm})
     }
 
   render () {
+    console.log(this.state.orderForm);
+
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
       formElementsArray.push({
@@ -156,9 +159,11 @@ class ContactData extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            invalid={!formElement.config.valid}
+            shouldValidate={formElement.config.validation}
             changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
         ))}
-        <Button btntype="Success">Order</Button>
+        <Button btnType="Success">Order</Button>
       </form>
     ) ;
     if (this.state.loading) {
