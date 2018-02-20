@@ -27,13 +27,13 @@ class SouvlakiBuilder extends Component {
   }
 
   componentDidMount () {
-    axios.get('https://souvlaki-builder.firebaseio.com/ingredients.json')
-    .then(response => {
-      this.setState({ingredients: response.data})
-    })
-    .catch(error => {
-      this.setState({error: true})
-    });
+    // axios.get('https://souvlaki-builder.firebaseio.com/ingredients.json')
+    // .then(response => {
+    //   this.setState({ingredients: response.data})
+    // })
+    // .catch(error => {
+    //   this.setState({error: true})
+    // });
   }
 
   updatePurchaseState (ingredients){
