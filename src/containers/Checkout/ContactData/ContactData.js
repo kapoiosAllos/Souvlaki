@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -102,7 +103,7 @@ class ContactData extends Component {
       formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
     }
     const order = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData
     }
@@ -146,17 +147,14 @@ class ContactData extends Component {
       updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
       updatedFormElement.touched = true;
       updatedOrderForm[inputIdentifier] = updatedFormElement;
-
       let formIsValid = true;
-      for ( let inputIdentifier in updatedFormElement) {
-        formIsValid = updatedFormElement[inputIdentifier].valid && formIsValid;
+      for ( let inputIdentifier in updatedOrderForm) {
+        formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
       }
       this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid})
     }
 
   render () {
-    console.log(this.state.orderForm);
-
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
       formElementsArray.push({
@@ -193,4 +191,11 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData;
+const mapsStateToProps = state => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice
+  };
+}
+
+export default connect(mapsStateToProps)(ContactData);
