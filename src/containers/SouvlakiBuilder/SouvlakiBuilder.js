@@ -8,24 +8,16 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Souvlaki/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import axios from '../../axiosOrders';
 import * as burgerBuilderActions from '../../store/actions/index';
+import axios from '../../axiosOrders';
 
 class SouvlakiBuilder extends Component {
   state = {
-    purchasing: false,
-    loading: false,
-    error: true
+    purchasing: false
   }
 
   componentDidMount () {
-    // axios.get('https://souvlaki-builder.firebaseio.com/ingredients.json')
-    // .then(response => {
-    //   this.setState({ingredients: response.data})
-    // })
-    // .catch(error => {
-    //   this.setState({error: true})
-    // });
+
   }
 
   updatePurchaseState (ingredients){
@@ -122,9 +114,6 @@ class SouvlakiBuilder extends Component {
       price={this.props.price}
       purchaseCancelled={this.purchaseCancelHandler}
       purchaceContinued={this.purchaseContinueHandler}/>;
-    }
-    if (this.state.loading) {
-      orderSummary = <Spinner/>;
     }
 
     return (
