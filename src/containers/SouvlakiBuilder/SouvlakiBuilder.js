@@ -8,7 +8,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Souvlaki/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import * as burgerBuilderActions from '../../store/actions/index';
+import * as souvlakiBuilderActions from '../../store/actions/index';
 import axios from '../../axiosOrders';
 
 class SouvlakiBuilder extends Component {
@@ -137,9 +137,9 @@ const mapsStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
-    onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
-    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
+    onIngredientAdded: (ingName) => dispatch(souvlakiBuilderActions.addIngredient(ingName)),
+    onIngredientRemoved: (ingName) => dispatch(souvlakiBuilderActions.removeIngredient(ingName)),
+    onInitIngredients: () => dispatch(souvlakiBuilderActions.initIngredients())
   };
 }
 export default connect(mapsStateToProps, mapDispatchToProps)(withErrorHandler(SouvlakiBuilder, axios));

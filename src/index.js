@@ -8,10 +8,10 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import burgerBuilderReducer from './store/reducers/burgerBuilder';
+import souvlakiBuilderReducer from './store/reducers/souvlakiBuilder';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(burgerBuilderReducer, composeEnhancers(
+const store = createStore(souvlakiBuilderReducer, composeEnhancers(
   applyMiddleware(thunk)
 ));
 
