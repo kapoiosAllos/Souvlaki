@@ -17,7 +17,7 @@ class SouvlakiBuilder extends Component {
   }
 
   componentDidMount () {
-
+    this.props.onInitIngredients();
   }
 
   updatePurchaseState (ingredients){
@@ -93,7 +93,7 @@ class SouvlakiBuilder extends Component {
       disabledInfo[key] = disabledInfo[key] <= 0
     };
     let orderSummary = null;
-    let souvlaki = this.state.error ? <p> Ingredients cant be displayed </p> : <Spinner/>;
+    let souvlaki = this.props.error ? <p> Ingredients cant be displayed </p> : <Spinner/>;
 
     if (this.props.ings) {
       souvlaki = (
@@ -130,14 +130,16 @@ class SouvlakiBuilder extends Component {
 const mapsStateToProps = state => {
   return {
     ings: state.ingredients,
-    price: state.totalPrice
+    price: state.totalPrice,
+    error: state.error
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIngredientAdded: (ingName) =>dispatch(burgerBuilderActions.addIngredient(ingName)),
-    onIngredientRemoved: (ingName) =>dispatch(burgerBuilderActions.removeIngredient(ingName))
+    onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
+    onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
+    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
   };
 }
 export default connect(mapsStateToProps, mapDispatchToProps)(withErrorHandler(SouvlakiBuilder, axios));
