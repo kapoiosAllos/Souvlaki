@@ -5,5 +5,5 @@ export {
 } from './souvlakiBuilder';
 
 export {
-  purchaseSouvlakiStart
+  purchaseSouvlaki
 } from './souvlakiBuilder';

@@ -92,7 +92,6 @@ class ContactData extends Component {
         valid: true
       }
     },
-    loading: false,
     formIsValid: false
   }
 
@@ -173,7 +172,7 @@ class ContactData extends Component {
         <Button btnType="Success" disabled={!this.state.formIsValid}>Order</Button>
       </form>
     ) ;
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />
     }
     return (
@@ -188,14 +187,15 @@ class ContactData extends Component {
 const mapsStateToProps = state => {
   return {
     ings: state.ingredients,
-    price: state.totalPrice
+    price: state.totalPrice,
+    loading: state.loading
   };
 }
 
 const mapDispatchToProps = dispatch => {
-
-      onOrderSouvlaki: (orderData) => dispatch(actions.purchaseSouvlakiStart(orderData))
-
+  return {
+    onOrderSouvlaki: (orderData) => dispatch(actions.purchaseSouvlaki(orderData))
+  };
 }
 
 export default connect(mapsStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));

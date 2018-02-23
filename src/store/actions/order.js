@@ -16,8 +16,15 @@ export const purchaseSouvlakiFail = (error) => {
   };
 };
 
-export const purchaseSouvlakiStart = (orderData) => {
+export const purchaseSouvlakiStart = () => {
+  return {
+    type: actionTypes.PURCHASE_SOUVLAKI_START
+  };
+};
+
+export const purchaseSouvlaki = (orderData) => {
   return dispatch => {
+    dispatch(purchaseSouvlakiStart());
     axios.post('/orders.json', orderData)
     .then(response => {
       console.log(response.data);
