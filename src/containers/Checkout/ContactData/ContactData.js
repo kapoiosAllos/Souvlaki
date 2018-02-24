@@ -87,7 +87,7 @@ class ContactData extends Component {
             {value:'cheapest', displayValue: 'Cheapest'},
           ]
         },
-        value:'',
+        value:'fastest',
         validation: {},
         valid: true
       }
@@ -186,9 +186,9 @@ class ContactData extends Component {
 
 const mapsStateToProps = state => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    loading: state.loading
+    ings: state.souvlakiBuilder.ingredients,
+    price: state.souvlakiBuilder.totalPrice,
+    loading: state.order.loading
   };
 }
 
@@ -196,6 +196,6 @@ const mapDispatchToProps = dispatch => {
   return {
     onOrderSouvlaki: (orderData) => dispatch(actions.purchaseSouvlaki(orderData))
   };
-}
+};
 
 export default connect(mapsStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));

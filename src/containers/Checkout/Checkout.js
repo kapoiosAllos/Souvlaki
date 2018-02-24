@@ -55,7 +55,7 @@ class Checkout extends Component {
 
 const mapsStateToProps = state => {
   return {
-    ings: state.ingredients
+    ings: state.souvlakiBuilder.ingredients
   };
 }
 

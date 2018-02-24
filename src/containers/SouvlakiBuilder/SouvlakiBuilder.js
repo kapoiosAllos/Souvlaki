@@ -129,9 +129,9 @@ class SouvlakiBuilder extends Component {
 
 const mapsStateToProps = state => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    error: state.error
+    ings: state.souvlakiBuilder.ingredients,
+    price: state.souvlakiBuilder.totalPrice,
+    error: state.souvlakiBuilder.error
   };
 }
 
