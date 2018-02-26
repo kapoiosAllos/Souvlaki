@@ -6,5 +6,6 @@ export {
 
 export {
   purchaseSouvlaki,
-  purchaseInit
+  purchaseInit,
+  fetchOrders
 } from './order';
