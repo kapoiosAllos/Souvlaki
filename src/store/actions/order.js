@@ -27,7 +27,6 @@ export const purchaseSouvlaki = (orderData) => {
     dispatch(purchaseSouvlakiStart());
     axios.post('/orders.json', orderData)
     .then(response => {
-      console.log(response.data);
       dispatch(purchaseSouvlakiSuccess(response.data.name, orderData));
     })
     .catch(error => {
