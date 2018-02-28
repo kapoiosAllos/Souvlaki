@@ -107,7 +107,7 @@ class ContactData extends Component {
       price: this.props.price,
       orderData: formData
     }
-        this.props.onOrderSouvlaki(order);
+        this.props.onOrderSouvlaki(order, this.props.token);
     }
 
     checkValidity(value, rules) {
@@ -202,13 +202,14 @@ const mapsStateToProps = state => {
   return {
     ings: state.souvlakiBuilder.ingredients,
     price: state.souvlakiBuilder.totalPrice,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderSouvlaki: (orderData) => dispatch(actions.purchaseSouvlaki(orderData))
+    onOrderSouvlaki: (orderData, token) => dispatch(actions.purchaseSouvlaki(orderData, token))
   };
 };
 
