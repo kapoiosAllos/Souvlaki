@@ -11,7 +11,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import axios from '../../axiosOrders';
 
-class SouvlakiBuilder extends Component {
+export class SouvlakiBuilder extends Component {
   state = {
     purchasing: false
   }
