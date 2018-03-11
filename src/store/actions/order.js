@@ -23,15 +23,10 @@ export const purchaseSouvlakiStart = () => {
 };
 
 export const purchaseSouvlaki = (orderData, token) => {
-  return dispatch => {
-    dispatch(purchaseSouvlakiStart());
-    axios.post('/orders.json?auth=' + token, orderData)
-    .then(response => {
-      dispatch(purchaseSouvlakiSuccess(response.data.name, orderData));
-    })
-    .catch(error => {
-      dispatch(purchaseSouvlakiFail(error));
-    });
+  return {
+    type: actionTypes.PURCHASE_SOUVLAKI,
+    orderData: orderData,
+    token: token
   }
 };
 
@@ -62,22 +57,9 @@ export const fetchOrdersStart = () => {
 };
 
 export const fetchOrders = (token, userId) => {
-  return dispatch => {
-    dispatch(fetchOrdersStart());
-    const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
-    axios.get('/orders.json' + queryParams)
-      .then(res => {
-        const fetcedOrders = [];
-        for (let key in res.data) {
-          fetcedOrders.push({
-            ...res.data[key],
-            id: key
-          });
-        };
-        dispatch(fetchOrdersSuccess(fetcedOrders));
-      })
-      .catch(err => {
-        dispatch(fetchOrdersFail(err));
-      });
+  return  {
+    type: actionTypes.FETCH_ORDERS,
+    token: token,
+    userId: userId
   }
 }
